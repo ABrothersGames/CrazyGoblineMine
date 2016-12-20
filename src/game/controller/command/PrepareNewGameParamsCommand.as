@@ -16,10 +16,11 @@ package game.controller.command {
             loadItemsConfiguration();
 
             userBalanceProxy.userBalance = 0;
+            userBalanceProxy.userDiamondBalance = 0;
         }
 
         private function loadItemsConfiguration():void {
-            var url:URLRequest = new URLRequest("/res/json/itemConfiguration.json");
+            var url:URLRequest = new URLRequest("/itemConfiguration.json");
             var jsonLoader:URLLoader = new URLLoader();
 
             jsonLoader.addEventListener(Event.COMPLETE, jsonLoaded);

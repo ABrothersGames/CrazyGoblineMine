@@ -35,7 +35,7 @@ package game.view.vl {
         }
 
         private function closeBtmClicked(event:MouseEvent):void {
-
+            closeBtn.removeEventListener(MouseEvent.CLICK, closeBtmClicked);
             for(var i:int = 0; i < 12; i++){
                 (content["autoUpdateItem_" + i] as MovieClip).removeEventListener(MouseEvent.CLICK, autoUpdateItemClicked);
             }

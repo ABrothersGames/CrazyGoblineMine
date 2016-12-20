@@ -6,8 +6,9 @@ package game.view.mediator {
     import game.config.GameEvents;
 
     import game.config.GameNotifications;
+import game.model.proxy.DiamondSellerProxy;
 
-    import game.view.vl.GameMainSceneVL;
+import game.view.vl.GameMainSceneVL;
 
     import org.puremvc.as3.interfaces.INotification;
 
@@ -21,12 +22,14 @@ package game.view.mediator {
 
         override public function onRegister():void {
             super.onRegister();
+            mainGameSceneVL.updateDiamondCost(diamondSellerProxy.diamondSellerVO.diamondCost);
             registerListener();
         }
 
 
         override public function listNotificationInterests():Array {
-            return [GameNotifications.USER_BALANCE_UPDATED
+            return [GameNotifications.USER_BALANCE_UPDATED,
+                    GameNotifications.USER_DIAMOND_BALANCE_UPDATED
             ];
         }
 
@@ -37,6 +40,14 @@ package game.view.mediator {
                     mainGameSceneVL.updateWinAmount(notification.getBody() as Number);
                     break;
                 }
+                case GameNotifications.USER_DIAMOND_BALANCE_UPDATED:{
+                    mainGameSceneVL.updateDiamondAmount(notification.getBody() as Number);
+                    break;
+                }
+                /*case GameNotifications.USER_DIAMOND_COST_UPDATED:{
+                    mainGameSceneVL.updateDiamondCost(diamondSellerProxy.diamondSellerVO.diamondCost);
+                    break;
+                }*/
             }
         }
 
@@ -48,6 +59,10 @@ package game.view.mediator {
         private function get mainGameSceneVL():GameMainSceneVL {
 
             return viewComponent as GameMainSceneVL;
+        }
+        private function get diamondSellerProxy():DiamondSellerProxy {
+
+            return facade.retrieveProxy(DiamondSellerProxy.NAME) as DiamondSellerProxy;
         }
 
         private function updateManagerMenuBtnClicked(event:Event):void {
