@@ -17,7 +17,7 @@ package core.model.proxy
 		}
 		
 		public function get xmlPath():String{
-			return (_flashVarsDto.flashvarObject.hasOwnProperty("XMLPath")) ? _flashVarsDto.flashvarObject["XMLPath"] : "LoadConfig.xml";
+			return (_flashVarsDto.flashvarObject.hasOwnProperty("XMLPath")) ? _flashVarsDto.flashvarObject["XMLPath"] : "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B5PpEZhbFty_RndZak0wSVUwSzA";
 		}
 	}
 }

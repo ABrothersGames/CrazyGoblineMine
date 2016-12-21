@@ -20,7 +20,7 @@ package game.controller.command {
         }
 
         private function loadItemsConfiguration():void {
-            var url:URLRequest = new URLRequest("/itemConfiguration.json");
+            var url:URLRequest = new URLRequest("https://drive.google.com/uc?export=download&confirm=no_antivirus&id=0B5PpEZhbFty_REdOU1lnQzBBdjA");
             var jsonLoader:URLLoader = new URLLoader();
 
             jsonLoader.addEventListener(Event.COMPLETE, jsonLoaded);

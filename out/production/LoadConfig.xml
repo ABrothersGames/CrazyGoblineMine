@@ -1,7 +1,0 @@
-<XML_PATH version="0.1">
-	<PATH>
-		<path URL="preLoaderBackground.jpg"	ID="preLoaderBackground"	TYPE="image"/>
-		<path URL="CrazyGoblinMine.swf"	ID="crazyGoblinMine"	TYPE="movieclip"/>
-		<path URL="MainMenu.swf"	ID="mainMenu"	TYPE="movieclip"/>
-	</PATH>
-</XML_PATH>
