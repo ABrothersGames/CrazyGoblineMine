@@ -10,6 +10,7 @@ package game.config {
         //game notification
         public static const USER_BALANCE_UPDATED:String = "user_balance_updated";
         public static const AUTO_UPDATE_USER_BALANCE:String = "auto_update_user_balance";
+        public static const USER_DIAMOND_BALANCE_UPDATED:String = "user_diamond_balance_updated";
 
         //items state notification
         public static const ITEM_TO_ENABLE_STATE:String = "item_to_enable_state";

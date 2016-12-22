@@ -23,6 +23,8 @@ package game.view.vl {
         private function initArt():void {
 
             content["coinsTxt"].text = 0;
+            content["diamondsTxt"].text = 0;
+            content["diamondCost"].text = 0;
 
             updateManagerMenuBtn = content["autoUpdateStoreButton"];
             updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
@@ -31,6 +33,14 @@ package game.view.vl {
         public function updateWinAmount(winAmount:Number):void {
 
             content["coinsTxt"].text = Math.floor(winAmount).toString();
+        }
+        public function updateDiamondAmount(diamondAmount:Number):void {
+
+            content["diamondsTxt"].text = Math.floor(diamondAmount).toString();
+        }
+        public function updateDiamondCost(diamondCost:Number):void {
+
+            content["diamondCost"].text = Math.floor(diamondCost).toString();
         }
 
         private function updateManagerMenuBtnClicked(event:MouseEvent):void {

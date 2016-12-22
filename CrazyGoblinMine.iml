@@ -5,14 +5,23 @@
       <configuration name="MineCrazyGoblin" target-platform="Mobile" main-class="MineCrazyGoblinAndroid" output-file="MineCrazyGoblin.swf" output-folder="$MODULE_DIR$/out/production">
         <dependencies>
           <entries>
-            <entry library-id="dca44764-8cbc-4856-855a-bd9fa9806000">
+            <entry library-id="a97d0f74-401d-4fcb-81a5-11be5778480d">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="447d7014-53a3-4f38-a62d-715b64c6363b">
+            <entry library-id="cc8e0a47-8ec6-43ab-bd3d-88402846d4e8">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="bulk_loader" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="flash" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="PureMVC_AS3-2.0.4" library-level="project">
               <dependency linkage="Merged" />
             </entry>
           </entries>
-          <sdk name="flex_4_13_air_15 (1)" />
+          <sdk name="Apach Flex Air SDK" />
         </dependencies>
         <compiler-options />
         <packaging-air-desktop />
@@ -35,30 +44,32 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="flex_4_13_air_15 (1)" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="jdk" jdkName="Apach Flex Air SDK" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="lib1" level="project" />
     <orderEntry type="library" exported="" name="lib" level="project" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="dca44764-8cbc-4856-855a-bd9fa9806000" />
+        <properties id="a97d0f74-401d-4fcb-81a5-11be5778480d" />
         <CLASSES>
-          <root url="file://$MODULE_DIR$/src/lib" />
+          <root url="jar://$MODULE_DIR$/src/lib/bulk_loader.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/src/lib" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="447d7014-53a3-4f38-a62d-715b64c6363b" />
+        <properties id="cc8e0a47-8ec6-43ab-bd3d-88402846d4e8" />
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../libsForProgrammer/as3Libs/flash.swc!/" />
+          <root url="jar://$MODULE_DIR$/src/lib/PureMVC_AS3-2.0.4.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="bulk_loader" level="project" />
+    <orderEntry type="library" exported="" name="flash" level="project" />
+    <orderEntry type="library" exported="" name="PureMVC_AS3-2.0.4" level="project" />
   </component>
 </module>
