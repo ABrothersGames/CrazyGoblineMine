@@ -15,10 +15,19 @@ package game.model.proxy {
 
             userBalanceVO.balance = value;
         }
+        public function set userDiamondBalance(value:Number):void {
+
+            userBalanceVO.diamondBalance = value;
+        }
 
         public function get userBalance():Number {
 
             return userBalanceVO.balance as Number;
+        }
+
+        public function get userDiamondBalance():Number {
+
+            return userBalanceVO.diamondBalance as Number;
         }
 
         public function get userBalanceVO():UserBalanceVO {

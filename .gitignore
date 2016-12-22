@@ -7,7 +7,7 @@ bin/*
 asdoc-output
 /*.as3proj
 **/target
-**.iml
+*.iml
 *-app.xml
 
 .metadata
