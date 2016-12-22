@@ -10,6 +10,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 
         private var popupsQueue:Vector.<DisplayObject>;
         private var _isFreeForOpen:Boolean = true;
+        private var _currentOpenPopup:DisplayObject;
 
         public function PopupProxy(proxyName:String = null, data:Object = null) {
             super(proxyName, data);
@@ -18,10 +19,11 @@ import org.puremvc.as3.patterns.proxy.Proxy;
         public function getNextPopupForOpen():DisplayObject {
 
             if(hasNextPopupForOpen){
-                return popupsQueue.shift();
+                _currentOpenPopup = popupsQueue.shift();
+                return _currentOpenPopup;
             }
 
-            return null
+            return null;
         }
 
         public function addPopupToQueue(popup:DisplayObject):void {
@@ -31,7 +33,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 
         public function hasNextPopupForOpen():Boolean {
 
-            return false;
+            return popupsQueue.length > 0;
         }
 
         public function set isFreeForOpen(value:Boolean):void {
@@ -40,6 +42,11 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 
         public function get isFreeForOpen():Boolean {
             return _isFreeForOpen;
+        }
+
+        public function get currentOpenPopup():DisplayObject {
+
+            return _currentOpenPopup;
         }
     }
 }

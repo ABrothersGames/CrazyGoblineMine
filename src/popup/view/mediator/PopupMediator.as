@@ -46,6 +46,10 @@ public class PopupMediator extends UIMediator {
         private function closeBtnClicked(event:Event):void {
 
         }
+
+        private function doBtnClicked(event:Event):void {
+
+        }
     }
 }
 

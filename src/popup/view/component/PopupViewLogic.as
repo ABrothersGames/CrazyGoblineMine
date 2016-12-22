@@ -7,8 +7,9 @@ package popup.view.component {
     import popup.config.PopupEventsConfig;
 
     public class PopupViewLogic extends ViewLogic {
-        public function PopupViewLogic(assetInstanceName:String = null, nameSpace:String = null) {
-            super(assetInstanceName, nameSpace);
+        public function PopupViewLogic(assetInstanceName:String) {
+            super(assetInstanceName);
+            registerButton();
         }
 
         private function registerButton():void {
