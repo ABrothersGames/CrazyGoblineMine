@@ -3,7 +3,8 @@ package game.controller.command {
 
     import game.config.GameNotifications;
     import game.controller.command.autoUpdate.OpenAutoUpdateManagerMenu;
-    import game.model.proxy.DiamondSellerProxy;
+import game.model.proxy.DataFileProxy;
+import game.model.proxy.DiamondSellerProxy;
     import game.model.proxy.items.ItemsProxy;
     import game.model.proxy.UserBalanceProxy;
     import game.model.vo.DiamondSellerVO;
@@ -14,12 +15,14 @@ package game.controller.command {
 
     import game.view.mediator.GameMenuMediator;
     import game.view.mediator.ItemsMediators;
-    import game.view.vl.DiamondSellerVL;
+import game.view.mediator.SaveAndLoadMediator;
+import game.view.vl.DiamondSellerVL;
     import game.view.vl.GameMainSceneVL;
     import game.view.vl.GameMenuVL;
     import game.view.vl.ItemsVL;
+import game.view.vl.SaveAndLoadVL;
 
-    import org.puremvc.as3.interfaces.INotification;
+import org.puremvc.as3.interfaces.INotification;
     import org.puremvc.as3.patterns.command.SimpleCommand;
 
     public class PrepareGameCommand extends SimpleCommand {
@@ -35,6 +38,7 @@ package game.controller.command {
             facade.registerProxy(new ItemsProxy(new ItemsVO()));
             facade.registerProxy(new UserBalanceProxy(new UserBalanceVO()));
             facade.registerProxy(new DiamondSellerProxy(new DiamondSellerVO()));
+            facade.registerProxy(new DataFileProxy());
         }
 
         private function registerCommands():void {
@@ -45,12 +49,13 @@ package game.controller.command {
             facade.registerCommand(GameNotifications.UPDATE_USER_BALANCE, UpdateUserBalanceCommand);
             facade.registerCommand(GameNotifications.DIAMOND_BOUGHT, DiamondBoughtCommand);
             facade.registerCommand(GameNotifications.OPEN_UPDATE_MANAGER_MENU, OpenAutoUpdateManagerMenu);
+            facade.registerCommand(GameNotifications.CHECK_SLOTS_COMMAND, CheckSlotsCommand);
+            facade.registerCommand(GameNotifications.SLOT_ACCEPTED_COMMAND, SlotAcceptedCommand);
         }
 
         private function registerMediators():void {
 
             facade.registerMediator(new GameMenuMediator(new GameMenuVL("mainMenu")));
-
         }
     }
 }

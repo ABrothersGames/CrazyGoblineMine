@@ -13,7 +13,7 @@ import flash.events.Event;
     public class GameMenuVL extends ViewLogic {
 
         private var startGameButton:MovieClip;
-
+        private var loadButton:MovieClip;
         public function GameMenuVL(assetInstanceName:String = null, nameSpace:String = null) {
             super(assetInstanceName, nameSpace);
 
@@ -27,18 +27,22 @@ import flash.events.Event;
             if(visualContent["startNewGameButton"]){
                 startGameButton = visualContent["startNewGameButton"];
             }
+            if(visualContent["loadButton"]){
+                loadButton = visualContent["loadButton"];
+            }
         }
 
-        private function registerListener():void {
+        public function registerListener():void {
 
             if(startGameButton){
-
                 startGameButton.addEventListener(MouseEvent.CLICK, startGameButtonClicked);
             }
+            loadButton.addEventListener(MouseEvent.CLICK, loadButtonClicked);
         }
 
         private function startGameButtonClicked(event:MouseEvent):void {
             startGameButton.removeEventListener(MouseEvent.CLICK, startGameButtonClicked);
+            loadButton.removeEventListener(MouseEvent.CLICK, loadButtonClicked);
 
             var aaa:Sprite = new Sprite();
             aaa.graphics.beginFill(0x00ff00);
@@ -47,5 +51,12 @@ import flash.events.Event;
             startGameButton.addChild(aaa);
             dispatchEvent(new Event(GameEvents.START_NEW_GAME));
         }
+
+        private function loadButtonClicked(event:MouseEvent):void {
+            loadButton.addEventListener(MouseEvent.CLICK, loadButtonClicked);
+            startGameButton.removeEventListener(MouseEvent.CLICK, startGameButtonClicked);
+            dispatchEvent(new Event(GameEvents.OPEN_LOAD_MENU));
+        }
+
     }
 }
