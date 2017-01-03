@@ -1,6 +1,3 @@
-/**
- * Created by HOME on 20.12.2016.
-*/
 package popup.view.mediator {
     import core.view.components.ViewLogic;
     import core.view.mediators.UIMediator;
