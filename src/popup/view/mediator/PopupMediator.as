@@ -2,37 +2,27 @@ package popup.view.mediator {
     import core.view.components.ViewLogic;
     import core.view.mediators.UIMediator;
 
-import flash.display.DisplayObject;
-import flash.events.Event;
+    import flash.display.DisplayObject;
+    import flash.events.Event;
 
-import org.puremvc.as3.interfaces.INotification;
+    import org.puremvc.as3.interfaces.INotification;
 
-import popup.config.PopupEventsConfig;
+    import popup.config.PopupEventsConfig;
+    import popup.config.PopupNotificationsConfig;
 
-public class PopupMediator extends UIMediator {
+    public class PopupMediator extends UIMediator {
 
-        public function PopupMediator(name:String, viewComponent:ViewLogic, eclipseBackground:Boolean = true) {
+        public function PopupMediator(name:String, viewComponent:ViewLogic, modalBackground:Boolean = true) {
             super(name, viewComponent);
         }
 
         override public function onRegister():void {
-            super .onRegister();
-
-
+            super.onRegister();
+            registerListeners();
         }
 
         override public function onRemove():void {
-            super .onRemove();
-        }
-
-        override public function listNotificationInterests():Array {
-            return [];
-        }
-
-        override public function handleNotification(notification:INotification):void {
-            switch (notification.getName()){
-
-            }
+            super.onRemove();
         }
 
         private function registerListeners():void {
@@ -41,11 +31,7 @@ public class PopupMediator extends UIMediator {
         }
 
         private function closeBtnClicked(event:Event):void {
-
-        }
-
-        private function doBtnClicked(event:Event):void {
-
+            sendNotification(PopupNotificationsConfig.CLOSE_POPUP, mediatorName);
         }
     }
 }
