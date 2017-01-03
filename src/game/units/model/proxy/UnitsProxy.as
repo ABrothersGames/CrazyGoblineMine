@@ -7,7 +7,7 @@ package game.units.model.proxy {
 
     public class UnitsProxy extends Proxy {
 
-        private var unitsDto:List.<UnitsDto> =new List.<UnitsDto>();
+        private var unitsDto:Vector.<UnitsDto> = new <UnitsDto>[];
 
         public function UnitsProxy(proxyName:String, data:Object) {
 
@@ -16,7 +16,7 @@ package game.units.model.proxy {
             super(proxyName, unitsDto);
         }
 
-        public function tryParseUnitsData(data:Object):void {
+        public function tryParseUnitsData(data:Object):Vector.<UnitsDto> {
 
             try{
                 var unitsDto = new UnitsDto();
@@ -27,9 +27,11 @@ package game.units.model.proxy {
             }catch(ex:Error){
                 throw (new Error(ex.message));
             }
+
+            return null;
         }
 
-        public function get unitsList():List.<UnitsDto> {
+        public function get unitsList():Vector.<UnitsDto> {
 
             return unitsDto;
         }
