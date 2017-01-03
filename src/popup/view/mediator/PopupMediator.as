@@ -5,8 +5,6 @@ package popup.view.mediator {
     import flash.display.DisplayObject;
     import flash.events.Event;
 
-    import org.puremvc.as3.interfaces.INotification;
-
     import popup.config.PopupEventsConfig;
     import popup.config.PopupNotificationsConfig;
 

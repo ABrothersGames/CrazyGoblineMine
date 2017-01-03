@@ -9,7 +9,6 @@ package popup.view.component {
 
     import popup.config.PopupEventsConfig;
 
-    //Simple popup must have only title, body and button for close this popup
     public class PopupViewLogic extends ViewLogic {
 
         //text
@@ -20,19 +19,27 @@ package popup.view.component {
         protected var title:DisplayObject;
         protected var body:DisplayObject;
 
+        //btns
+        protected var buttons:Array = [];
         public function PopupViewLogic(assetInstanceName:String) {
             super(assetInstanceName);
-            registerButtons();
             initArt();
+            registerButtons();
         }
 
         protected function initArt():void {
+
+            initBtns();
 
             initTitleText;
             initBodyText();
 
             initTitle();
             initBody();
+        }
+
+        protected function initBtns():void {
+            //TODO: need add logic for do btns;
         }
 
         protected function initTitleText():void {
