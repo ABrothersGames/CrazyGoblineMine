@@ -1,4 +1,6 @@
 package game.units.model.proxy {
+    import game.units.model.dto.EnemyWaveDto;
+    import game.units.model.dto.UnitsDto;
 
     public class EnemyUnitsProxy extends UnitsProxy {
 
@@ -9,13 +11,29 @@ package game.units.model.proxy {
         // temp value
         private var currentWave:Object;
         private var nextWave:Object;
-        public function EnemyUnitsProxy(data:Object) {
 
-            super(NAME, data);
+        private var _enemyWaveDto:EnemyWaveDto;
+        public function EnemyUnitsProxy() {
+
+            super(NAME);
+
+            _enemyWaveDto = new EnemyWaveDto();
         }
 
+        //enemy array index of elements its ID enemy (100+index in art);
         public function generateEnemyWave():void {
+            //TODO: need create real generator of enemy wave according math!!!
+            enemyWaveDto.enemiesWave = [2];
+        }
 
+        public function get enemyWave():Array {
+
+            return enemyWaveDto.enemiesWave;
+        }
+
+        private function get enemyWaveDto():EnemyWaveDto {
+
+            return _enemyWaveDto;
         }
     }
 }

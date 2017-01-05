@@ -7,10 +7,11 @@ package popup.view.mediator {
 
     import popup.config.PopupEventsConfig;
     import popup.config.PopupNotificationsConfig;
+    import popup.view.component.PopupViewLogic;
 
     public class PopupMediator extends UIMediator {
 
-        public function PopupMediator(name:String, viewComponent:ViewLogic, modalBackground:Boolean = true) {
+        public function PopupMediator(name:String, viewComponent:ViewLogic, modalBackground:Boolean = true, autoClose:int = 0) {
             super(name, viewComponent);
         }
 
@@ -25,11 +26,17 @@ package popup.view.mediator {
 
         private function registerListeners():void {
 
-            (viewComponent as DisplayObject).addEventListener(PopupEventsConfig.CLOSE_BTN_CLICKED, closeBtnClicked);
+            popupVL.addEventListener(PopupEventsConfig.CLOSE_BTN_CLICKED, closeBtnClicked);
         }
 
         private function closeBtnClicked(event:Event):void {
-            sendNotification(PopupNotificationsConfig.CLOSE_POPUP, mediatorName);
+
+            facade.removeMediator(mediatorName);
+        }
+
+        private function get popupVL():PopupViewLogic {
+
+            return viewComponent as PopupViewLogic;
         }
     }
 }

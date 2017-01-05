@@ -5,10 +5,17 @@ package game.controller.command.autoUpdate {
 
     import org.puremvc.as3.interfaces.INotification;
 
+    import popup.view.component.PopupViewLogic;
+
+    import popup.view.mediator.PopupMediator;
+
     public class OpenAutoUpdateManagerMenu extends SimpleGameCommand {
         override public function execute(notification:INotification):void {
 
             facade.registerMediator(new AutoUpdateMangerMenuMediator(new AutoUpdateMangerMenuVL()));
+
+            //for test
+            //facade.registerMediator(new PopupMediator("baseInfoPopup", new PopupViewLogic("baseInfoPopup")));
         }
     }
 }

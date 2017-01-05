@@ -9,7 +9,7 @@ package game.units.model.proxy {
 
         private var unitsDto:Vector.<UnitsDto> = new <UnitsDto>[];
 
-        public function UnitsProxy(proxyName:String, data:Object) {
+        public function UnitsProxy(proxyName:String) {
 
             unitsDto = tryParseUnitsData(data);
 
@@ -19,7 +19,7 @@ package game.units.model.proxy {
         public function tryParseUnitsData(data:Object):Vector.<UnitsDto> {
 
             try{
-                var unitsDto = new UnitsDto();
+                var unitsDto:Object = new UnitsDto();
                 unitsDto.unitId = data.unitId;
                 unitsDto.unitMultiplier = data.unitMultiplier;
                 unitsDto.unitPrize = data.unitPrize;

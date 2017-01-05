@@ -11,6 +11,10 @@ package popup.controller.command {
 
         override public function execute(notification:INotification):void {
 
+            if(!popupProxy.isFreeForOpen){
+                return;
+            }
+
             var popupName:String = popupProxy.getNextPopupForOpen();
             facade.registerMediator(new PopupMediator(popupName, new PopupViewLogic(popupName)));
         }

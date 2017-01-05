@@ -33,7 +33,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
             popupsQueue.push(popup);
         }
 
-        public function hasNextPopupForOpen():Boolean {
+        public function get hasNextPopupForOpen():Boolean {
 
             return popupsQueue.length > 0;
         }

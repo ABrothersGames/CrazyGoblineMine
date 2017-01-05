@@ -5,8 +5,8 @@ package game.units.model.proxy {
 
         public static const NAME:String = "DefenderUnitsProxy";
 
-        public function DefenderUnitsProxy(data:Object) {
-            super(NAME, data);
+        public function DefenderUnitsProxy() {
+            super(NAME);
         }
 
         private function removeUnit(id:uint, count:uint):void {

@@ -2,6 +2,7 @@ package popup.view.component {
     import core.view.components.ViewLogic;
 
     import flash.display.DisplayObject;
+    import flash.display.MovieClip;
     import flash.display.SimpleButton;
     import flash.events.Event;
     import flash.events.MouseEvent;
@@ -23,6 +24,7 @@ package popup.view.component {
         protected var buttons:Array = [];
         public function PopupViewLogic(assetInstanceName:String) {
             super(assetInstanceName);
+            content.visible = true;
             initArt();
             registerButtons();
         }
@@ -72,9 +74,10 @@ package popup.view.component {
 
         protected function registerButtons():void {
 
-            var button:SimpleButton;
+            var button:MovieClip;
 
             if(content.getChildByName("closeBtn") != null){
+                button = content.getChildByName("closeBtn") as MovieClip;
                 button.addEventListener(MouseEvent.CLICK, closeBtnClicked);
             }
         }
