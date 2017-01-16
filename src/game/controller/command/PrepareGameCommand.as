@@ -51,6 +51,7 @@ import org.puremvc.as3.interfaces.INotification;
             facade.registerCommand(GameNotifications.OPEN_UPDATE_MANAGER_MENU, OpenAutoUpdateManagerMenu);
             facade.registerCommand(GameNotifications.CHECK_SLOTS_COMMAND, CheckSlotsCommand);
             facade.registerCommand(GameNotifications.SLOT_ACCEPTED_COMMAND, SlotAcceptedCommand);
+            facade.registerCommand(GameNotifications.CANCEL_CLICKED_COMMAND, CancelClickedCommand);
         }
 
         private function registerMediators():void {

@@ -75,7 +75,7 @@ public class GameMainSceneMediator extends UIMediator {
 
         private function saveGameButtonClicked(event:EventWithData):void {
             var data:* = event.data;
-            sendNotification(GameNotifications.CHECK_SLOTS_COMMAND, data);
+            sendNotification(GameNotifications.CHECK_SLOTS_COMMAND, data, 'saving');
         }
         override public function onRemove():void{
             mainGameSceneVL.removeEventListener(GameEvents.UPDATE_MANAGER_MENU_BTN_CLICKED, updateManagerMenuBtnClicked);

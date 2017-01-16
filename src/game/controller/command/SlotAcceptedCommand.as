@@ -10,7 +10,7 @@ import game.controller.command.common.SimpleGameCommand;
         override public function execute(notification:INotification):void {
             var slotID:int = notification.getBody().id;
             var slotName:String = notification.getBody().name;
-            var slotAcceptedType:String = notification.getBody().type;
+            var slotAcceptedType:String = notification.getType() as String;
             var data:Object = {};
             switch (slotAcceptedType){
                 case 'saving':{

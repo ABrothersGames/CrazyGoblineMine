@@ -8,6 +8,8 @@ import flash.events.Event;
 
 import game.config.GameEvents;
 
+import game.config.GameEvents;
+
 import game.config.GameNotifications;
 import game.view.vl.SaveAndLoadVL;
 
@@ -25,11 +27,10 @@ public class SaveAndLoadMediator extends UIMediator{
         }
         override public function onRegister():void {
             super.onRegister();
-
-            //registerListener();
+            registerLoadListener();
         }
         private function registerLoadListener():void {
-            saveAndLoadVL.addEventListener(GameEvents.CANCEL_BTTN_CLICKED, cancelBtnClicked);
+            saveAndLoadVL.addEventListener(GameEvents.CANCEL_BTN_CLICKED, cancelBtnClicked);
             saveAndLoadVL.addEventListener(GameEvents.SLOT_CLICKED, slotClicked);
         }
 
@@ -40,9 +41,14 @@ public class SaveAndLoadMediator extends UIMediator{
         override public function handleNotification(notification:INotification):void {
 
             switch (notification.getName()){
-                case GameNotifications.CHECK_SLOTS:{
+                case GameNotifications.CHECK_SLOTS:
+                {
                     slotsClickType = notification.getType() as String;
                     checkSlots(notification.getBody() as Array);
+                    break;
+                }
+                case GameNotifications.SUCCESSFUL_SAVE:{
+                    sendNotification(GameNotifications.CANCEL_CLICKED_COMMAND);
                 break;
                 }
             }
@@ -69,7 +75,7 @@ public class SaveAndLoadMediator extends UIMediator{
             var data:Object = event.data;
             if(slotsClickType == 'saving'){
                 var time:Date = new Date();
-                var slotName:String = time.getDay() + ' ' + time.getHours()+':'+ time.getMinutes();
+                var slotName:String = time.getDate()+ '-' + time.getMonth() + '_' + time.getHours()+':'+ time.getMinutes();
                 data['name'] = slotName;
             }
             removeListeners();
@@ -77,11 +83,10 @@ public class SaveAndLoadMediator extends UIMediator{
         }
 
         private function cancelBtnClicked(event:Event):void {
-            removeListeners();
-            sendNotification(GameNotifications.CANCEL_CLICKED_COMMAND)
+            sendNotification(GameNotifications.CANCEL_CLICKED_COMMAND);
         }
         private function removeListeners():void{
-            saveAndLoadVL.removeEventListener(GameEvents.CANCEL_BTTN_CLICKED, cancelBtnClicked);
+            saveAndLoadVL.removeEventListener(GameEvents.CANCEL_BTN_CLICKED, cancelBtnClicked);
             saveAndLoadVL.removeEventListener(GameEvents.SLOT_CLICKED, slotClicked);
         }
     }

@@ -1,5 +1,7 @@
 package game.model.proxy {
 
+import core.configs.GeneralNotifCommandConfig;
+
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
@@ -12,6 +14,8 @@ import flash.net.FileFilter;
 import flash.net.FileReference;
 import flash.utils.ByteArray;
 
+import game.config.GameNotifications;
+
 import org.puremvc.as3.patterns.proxy.Proxy;
 
     public class DataFileProxy extends org.puremvc.as3.patterns.proxy.Proxy{
@@ -20,6 +24,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
         private var fileReference:FileReference;
         private var fileDirectory:File;
         private var objInDirectory:Array;
+        private var fileName:String = "save";
 
         public function DataFileProxy() {
             super(NAME);
@@ -44,15 +49,15 @@ import org.puremvc.as3.patterns.proxy.Proxy;
             fileReference.addEventListener(Event.CANCEL, onSaveCancel);
             fileReference.addEventListener(IOErrorEvent.IO_ERROR, onIOError);*/
 
-            var textFormat:String ='';
+            var textFormat:String = saveSlot + '_' + saveName;
             for(var param:* in data){
-                textFormat += String(param) + ':' + data[param] + '/' + saveSlot;
+                textFormat += '{'+String(param) + ':' + data[param] + '/}';
             }
             var byteArray:ByteArray = new ByteArray();
            // byteArray.writeUTFBytes(textFormat);
 
 
-            fileDirectory = fileDirectory.resolvePath(saveName);
+            fileDirectory = fileDirectory.resolvePath(fileName);
             var stream:FileStream = new FileStream();
             stream.open(fileDirectory, FileMode.WRITE);
             stream.writeUTFBytes(textFormat);
@@ -86,6 +91,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
             (event.target as FileStream).removeEventListener(Event.COMPLETE, onSaveComplete);
             (event.target as FileStream).removeEventListener(ProgressEvent.PROGRESS, onSaveProgress);
             (event.target as FileStream).removeEventListener(Event.CLOSE, onSaveCancel);
+            sendNotification(GameNotifications.SUCCESSFUL_SAVE);
         }
 
         public function onSaveCancel(event:Event):void

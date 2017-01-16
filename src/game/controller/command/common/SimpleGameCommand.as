@@ -28,12 +28,6 @@ import game.model.proxy.DiamondSellerProxy;
             return facade.retrieveProxy(DiamondSellerProxy.NAME) as DiamondSellerProxy;
         }
 
-        public function get dataFileProxy():DataFileProxy {
-
-            return facade.retrieveProxy(DataFileProxy.NAME) as DataFileProxy;
-        }
-
-
         public function get popupProxy():PopupProxy {
 
             return facade.retrieveProxy(PopupProxy.NAME) as PopupProxy;
@@ -47,6 +41,11 @@ import game.model.proxy.DiamondSellerProxy;
         public function get enemyUnitsProxy():EnemyUnitsProxy {
 
             return facade.retrieveProxy(EnemyUnitsProxy.NAME) as EnemyUnitsProxy;
+        }
+
+        public function get dataFileProxy():DataFileProxy {
+
+            return facade.retrieveProxy(DataFileProxy.NAME) as DataFileProxy;
         }
 
     }

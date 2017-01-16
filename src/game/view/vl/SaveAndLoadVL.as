@@ -21,7 +21,8 @@ public class SaveAndLoadVL extends ViewLogic{
             initArt();
         }
         private function initArt():void{
-            cancelButton = content['saveAndLoadMenu'];
+            cancelButton = content['cancelButton'];
+            registerListener();
         }
         private function  registerListener():void {
             cancelButton.addEventListener(MouseEvent.CLICK, cancelClickHandler);
@@ -36,7 +37,7 @@ public class SaveAndLoadVL extends ViewLogic{
 
         private function cancelClickHandler(event:MouseEvent):void {
             cancelButton.removeEventListener(MouseEvent.CLICK, cancelClickHandler);
-            dispatchEvent(new Event(GameEvents.CANCEL_BTTN_CLICKED));
+            dispatchEvent(new Event(GameEvents.CANCEL_BTN_CLICKED));
         }
 
         private function onSlotClickHandler(event:MouseEvent):void {
