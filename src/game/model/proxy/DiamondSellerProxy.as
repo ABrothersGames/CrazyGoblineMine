@@ -32,5 +32,11 @@ package game.model.proxy {
                 sendNotification(GameNotifications.DISABLE_DIAMOND_SELLER);
             }
         }
+        public function set diamondCost(cost:Number):void{
+            diamondSellerVO.diamondCost = cost;
+        }
+        public function get diamondCost():Number{
+            return diamondSellerVO.diamondCost as Number;
+        }
     }
 }

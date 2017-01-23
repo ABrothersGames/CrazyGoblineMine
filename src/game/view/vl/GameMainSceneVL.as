@@ -23,14 +23,22 @@ package game.view.vl {
 
         private function initArt():void {
 
-            content["coinsTxt"].text = 0;
+           /* content["coinsTxt"].text = 0;
             content["diamondsTxt"].text = 0;
-            content["diamondCost"].text = 0;
+            content["diamondCost"].text = 0;*/
 
             saveButton = content["saveButton"];
-            saveButton.addEventListener(MouseEvent.CLICK, saveGame);
+           //saveButton.addEventListener(MouseEvent.CLICK, saveGame);
 
             updateManagerMenuBtn = content["autoUpdateStoreButton"];
+            //updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
+        }
+        public function setUserBalance(data:Object):void{
+
+            content["coinsTxt"].text = data.goldAmount;
+            content["diamondsTxt"].text = data.diamondAmount;
+            content["diamondCost"].text =  data.diamondCost;
+            saveButton.addEventListener(MouseEvent.CLICK, saveGame);
             updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
         }
 

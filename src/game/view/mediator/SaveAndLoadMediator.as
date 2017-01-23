@@ -54,12 +54,13 @@ public class SaveAndLoadMediator extends UIMediator{
             }
         }
         private function checkSlots(slots:Array):void{
-            for(var i:int = 0; i<slotsAmount; i++){
-                if(i<slots.length) {
-                    saveAndLoadVL.checkSlot(i+1,slots[i])
+            for(var i:int = 1; i<=slotsAmount; i++){
+                if(slots[i]) {
+                    var name:String = (slots[i] as String).substring((slots[i] as String).indexOf(':')+1,(slots[i] as String).indexOf('{'));
+                    saveAndLoadVL.checkSlot(i,name)
                     continue;
                 }
-                saveAndLoadVL.checkSlot(i+1,'Empty');
+                saveAndLoadVL.checkSlot(i,'Empty');
             }
         }
 
@@ -78,6 +79,7 @@ public class SaveAndLoadMediator extends UIMediator{
                 var slotName:String = time.getDate()+ '-' + time.getMonth() + '_' + time.getHours()+':'+ time.getMinutes();
                 data['name'] = slotName;
             }
+
             removeListeners();
             sendNotification(GameNotifications.SLOT_ACCEPTED_COMMAND,data,slotsClickType);
         }

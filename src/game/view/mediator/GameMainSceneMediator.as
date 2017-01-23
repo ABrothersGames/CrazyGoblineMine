@@ -26,12 +26,14 @@ public class GameMainSceneMediator extends UIMediator {
             super.onRegister();
             mainGameSceneVL.updateDiamondCost(diamondSellerProxy.diamondSellerVO.diamondCost);
             registerListener();
+
         }
 
 
         override public function listNotificationInterests():Array {
             return [GameNotifications.USER_BALANCE_UPDATED,
-                    GameNotifications.USER_DIAMOND_BALANCE_UPDATED
+                    GameNotifications.USER_DIAMOND_BALANCE_UPDATED,
+                    GameNotifications.BALANCE_REFRESH
             ];
         }
 
@@ -46,10 +48,14 @@ public class GameMainSceneMediator extends UIMediator {
                     mainGameSceneVL.updateDiamondAmount(notification.getBody() as Number);
                     break;
                 }
-                /*case GameNotifications.USER_DIAMOND_COST_UPDATED:{
+                case GameNotifications.USER_DIAMOND_COST_UPDATED:{
                     mainGameSceneVL.updateDiamondCost(diamondSellerProxy.diamondSellerVO.diamondCost);
                     break;
-                }*/
+                }
+                case GameNotifications.BALANCE_REFRESH:{
+                    mainGameSceneVL.setUserBalance(notification.getBody() as Object);
+                    break;
+                }
             }
         }
 

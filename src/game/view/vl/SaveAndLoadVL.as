@@ -44,7 +44,7 @@ public class SaveAndLoadVL extends ViewLogic{
 
             var slotName:String = event.currentTarget.name;
             var slotNumber:int = int(slotName.substring(slotName.length-1,slotName.length));
-            dispatchEvent(new EventWithData(GameEvents.SLOT_CLICKED,{id:slotNumber}));
+            dispatchEvent(new EventWithData(GameEvents.SLOT_CLICKED,{id:slotNumber,name:slotName}));
         }
     }
 }

@@ -9,6 +9,8 @@ package game.config {
 
         //game notification
         public static const USER_BALANCE_UPDATED:String = "user_balance_updated";
+        public static const USER_DIAMOND_COST_UPDATED:String = "user_diamond_cost_updated";
+        public static const BALANCE_REFRESH:String = "balance_refresh";
         public static const AUTO_UPDATE_USER_BALANCE:String = "auto_update_user_balance";
         public static const USER_DIAMOND_BALANCE_UPDATED:String = "user_diamond_balance_updated";
 
