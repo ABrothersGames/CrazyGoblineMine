@@ -49,13 +49,13 @@ public class SaveAndLoadMediator extends UIMediator{
                 }
                 case GameNotifications.SUCCESSFUL_SAVE:{
                     sendNotification(GameNotifications.CANCEL_CLICKED_COMMAND);
-                break;
+                    break;
                 }
             }
         }
         private function checkSlots(slots:Array):void{
             for(var i:int = 1; i<=slotsAmount; i++){
-                if(slots[i]) {
+                if(slots && slots[i]) {
                     var name:String = (slots[i] as String).substring((slots[i] as String).indexOf(':')+1,(slots[i] as String).indexOf('{'));
                     saveAndLoadVL.checkSlot(i,name)
                     continue;
@@ -69,6 +69,7 @@ public class SaveAndLoadMediator extends UIMediator{
             return viewComponent as SaveAndLoadVL;
         }
         override public function onRemove():void{
+            saveAndLoadVL.removeSlotsListeners();
             removeListeners();
             super.onRemove();
         }
@@ -80,7 +81,7 @@ public class SaveAndLoadMediator extends UIMediator{
                 data['name'] = slotName;
             }
 
-            removeListeners();
+            //removeListeners();
             sendNotification(GameNotifications.SLOT_ACCEPTED_COMMAND,data,slotsClickType);
         }
 

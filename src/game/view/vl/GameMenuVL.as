@@ -53,8 +53,8 @@ import flash.events.Event;
         }
 
         private function loadButtonClicked(event:MouseEvent):void {
-            loadButton.addEventListener(MouseEvent.CLICK, loadButtonClicked);
-            startGameButton.removeEventListener(MouseEvent.CLICK, startGameButtonClicked);
+            loadButton.removeEventListener(MouseEvent.CLICK, loadButtonClicked);
+            //startGameButton.removeEventListener(MouseEvent.CLICK, startGameButtonClicked);
             dispatchEvent(new Event(GameEvents.OPEN_LOAD_MENU));
         }
 

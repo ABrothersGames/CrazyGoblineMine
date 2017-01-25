@@ -16,11 +16,13 @@ import utils.EventWithData;
 public class SaveAndLoadVL extends ViewLogic{
         private var slot:MovieClip;
         private var cancelButton:MovieClip;
+        private var slotArray:Array;
         public function SaveAndLoadVL() {
             super("saveAndLoadMenu");
             initArt();
         }
         private function initArt():void{
+            slotArray = [];
             cancelButton = content['cancelButton'];
             registerListener();
         }
@@ -32,11 +34,12 @@ public class SaveAndLoadVL extends ViewLogic{
             var t:String = 'saveSlot_'+ slotNumber;
             slot = content[t];
             (slot['saveName'] as TextField).text = slotName;
+            slotArray.push(slot);
             slot.addEventListener(MouseEvent.CLICK, onSlotClickHandler);
         }
 
         private function cancelClickHandler(event:MouseEvent):void {
-            cancelButton.removeEventListener(MouseEvent.CLICK, cancelClickHandler);
+            //cancelButton.removeEventListener(MouseEvent.CLICK, cancelClickHandler);
             dispatchEvent(new Event(GameEvents.CANCEL_BTN_CLICKED));
         }
 
@@ -45,6 +48,12 @@ public class SaveAndLoadVL extends ViewLogic{
             var slotName:String = event.currentTarget.name;
             var slotNumber:int = int(slotName.substring(slotName.length-1,slotName.length));
             dispatchEvent(new EventWithData(GameEvents.SLOT_CLICKED,{id:slotNumber,name:slotName}));
+        }
+        public function removeSlotsListeners():void{
+            cancelButton.removeEventListener(MouseEvent.CLICK, cancelClickHandler);
+            for (var i:int = 0;i<slotArray.length; i++) {
+                ( slotArray[i] as MovieClip).removeEventListener(MouseEvent.CLICK, onSlotClickHandler);
+            }
         }
     }
 }

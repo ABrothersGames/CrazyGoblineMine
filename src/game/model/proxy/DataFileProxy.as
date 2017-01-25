@@ -43,11 +43,15 @@ import org.puremvc.as3.patterns.proxy.Proxy;
                 var savingName:String = urlString.substring(urlString.lastIndexOf('/') + 1, urlString.length);
                 objInDirectory.push(savingName);
             }
-            if(objInDirectory.length > 0) {
+            if(objInDirectory && objInDirectory.length > 0) {
                 getDataFromFile();
             }
         }
         public function saveGameDataToFile(data:Object,saveSlot:int=0,saveName:String = null):void{
+            fileDirectory = fileDirectory.resolvePath(fileName);
+            if(!dataFromFile){
+                dataFromFile = [];
+            }
             var dataString:String;
             dataString = "id:" + saveSlot + 'name:' + saveName;
 
@@ -60,7 +64,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
             //var byteArray:ByteArray = new ByteArray();
             //byteArray.writeUTFBytes(textFormat);
 
-            fileDirectory = fileDirectory.resolvePath(fileName);
+            //fileDirectory = fileDirectory.resolvePath(fileName);
             var stream:FileStream = new FileStream();
             stream.open(fileDirectory, FileMode.WRITE);
             stream.writeUTFBytes(concatDataString);
@@ -97,14 +101,17 @@ import org.puremvc.as3.patterns.proxy.Proxy;
         }
 
         public function loadGameDataFromFile(slotID:int,slotName:String):void{
-            var loadingSlot:String = dataFromFile[slotID];
-            var paramsArray:Array = loadingSlot.split(/{/);
-            var loadingSlotObject:Object ={}
-            for(var i:int=1;i<paramsArray.length;i++){
-                var param:String = paramsArray[i].toString();
-                loadingSlotObject[param.slice(0,param.indexOf(':'))]=param.substring(param.indexOf(":")+1,param.indexOf("}"));
+
+            if(dataFromFile && dataFromFile[slotID]) {
+                var loadingSlot:String = dataFromFile[slotID];
+                var paramsArray:Array = loadingSlot.split(/{/);
+                var loadingSlotObject:Object = {}
+                for (var i:int = 1; i < paramsArray.length; i++) {
+                    var param:String = paramsArray[i].toString();
+                    loadingSlotObject[param.slice(0, param.indexOf(':'))] = param.substring(param.indexOf(":") + 1, param.indexOf("}"));
+                }
+                sendNotification(GameNotifications.PREPARE_NEW_GAME_PARAMS, loadingSlotObject)
             }
-            sendNotification(GameNotifications.PREPARE_NEW_GAME_PARAMS, loadingSlotObject)
             //return loadingSlotObject;
             /* stream.addEventListener(Event.COMPLETE, onReadComplete);
             stream.addEventListener(ProgressEvent.PROGRESS, onProgress);

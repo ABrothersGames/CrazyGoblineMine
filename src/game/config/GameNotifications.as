@@ -39,7 +39,6 @@ package game.config {
         public static const SLOT_ACCEPTED_COMMAND:String = "slot_accepted_command";
         public static const CANCEL_CLICKED_COMMAND:String = "cancel_clicked_command";
         public static const SUCCESSFUL_SAVE:String = "successful_save";
-        //public static const OPEN_SAVE_MENU_COMMAND:String = "open_save_menu_command";
         //public static const OPEN_LOAD_MENU_COMMAND:String = "open_load_menu_command";
     }
 }

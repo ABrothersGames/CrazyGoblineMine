@@ -13,7 +13,7 @@ package game.controller.command {
         override public function execute(notification:INotification):void {
             var goldAmount:Number = 0;
             var diamondAmount:Number = 0;
-            var diamondCost:Number;
+            var diamondCost:Number = 100;
             if(notification.getBody() as Object){
                 goldAmount = Number(notification.getBody().goldAmount);
                 diamondAmount = Number(notification.getBody().diamondAmount);
