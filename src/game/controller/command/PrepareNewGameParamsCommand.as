@@ -11,12 +11,20 @@ package game.controller.command {
     public class PrepareNewGameParamsCommand extends SimpleGameCommand {
 
         override public function execute(notification:INotification):void {
-
+            var goldAmount:Number = 0;
+            var diamondAmount:Number = 0;
+            var diamondCost:Number = 100;
+            if(notification.getBody() as Object){
+                goldAmount = Number(notification.getBody().goldAmount);
+                diamondAmount = Number(notification.getBody().diamondAmount);
+                diamondCost = Number(notification.getBody().diamondCost);
+            }
             //need register all start params
-            loadItemsConfiguration();
+            userBalanceProxy.userBalance = goldAmount;
+            userBalanceProxy.userDiamondBalance = diamondAmount;
+            diamondSellerProxy.diamondCost = diamondCost;
 
-            userBalanceProxy.userBalance = 0;
-            userBalanceProxy.userDiamondBalance = 0;
+            loadItemsConfiguration();
         }
 
         private function loadItemsConfiguration():void {
@@ -34,7 +42,7 @@ package game.controller.command {
 
             itemsProxy.parseItemsConfiguration(data);
 
-            sendNotification(GameNotifications.START_GAME, itemsProxy);
+            sendNotification(GameNotifications.START_GAME, /*itemsProxy*/{goldAmount:userBalanceProxy.userBalance,diamondAmount:userBalanceProxy.userDiamondBalance,diamondCost: diamondSellerProxy.diamondCost});
 
             //here need get user balance in start game from SAVE
             itemsProxy.tryUpdateItemsParametersByBalance(0);

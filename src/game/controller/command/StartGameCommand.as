@@ -1,5 +1,6 @@
 package game.controller.command {
-    import game.model.proxy.items.ItemsProxy;
+import game.config.GameNotifications;
+import game.model.proxy.items.ItemsProxy;
     import game.view.mediator.DiamondSellerMediator;
     import game.view.mediator.GameMainSceneMediator;
     import game.view.mediator.ItemsMediators;
@@ -19,6 +20,10 @@ package game.controller.command {
             facade.registerMediator(new ItemsMediators(new ItemsVL()));
             facade.registerMediator(new DiamondSellerMediator(new DiamondSellerVL()));
             facade.registerMediator(new RefreshTimerMediator(new RefreshTimerVL()));
+            refreshUserBalance(notification.getBody() as Object);
+        }
+        private function refreshUserBalance(data:Object):void{
+            sendNotification(GameNotifications.BALANCE_REFRESH, data)
         }
     }
 }

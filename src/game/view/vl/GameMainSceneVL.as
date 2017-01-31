@@ -12,6 +12,7 @@ package game.view.vl {
     public class GameMainSceneVL extends ViewLogic {
 
         private var updateManagerMenuBtn:MovieClip;
+        private var saveButton:MovieClip;
 
         public function GameMainSceneVL(assetInstanceName:String = null) {
 
@@ -22,11 +23,22 @@ package game.view.vl {
 
         private function initArt():void {
 
-            content["coinsTxt"].text = 0;
+           /* content["coinsTxt"].text = 0;
             content["diamondsTxt"].text = 0;
-            content["diamondCost"].text = 0;
+            content["diamondCost"].text = 0;*/
+
+            saveButton = content["saveButton"];
+           //saveButton.addEventListener(MouseEvent.CLICK, saveGame);
 
             updateManagerMenuBtn = content["autoUpdateStoreButton"];
+            //updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
+        }
+        public function setUserBalance(data:Object):void{
+
+            content["coinsTxt"].text = data.goldAmount;
+            content["diamondsTxt"].text = data.diamondAmount;
+            content["diamondCost"].text =  data.diamondCost;
+            saveButton.addEventListener(MouseEvent.CLICK, saveGame);
             updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
         }
 
@@ -43,9 +55,13 @@ package game.view.vl {
             content["diamondCost"].text = Math.floor(diamondCost).toString();
         }
 
+
         private function updateManagerMenuBtnClicked(event:MouseEvent):void {
 
             dispatchEvent(new Event(GameEvents.UPDATE_MANAGER_MENU_BTN_CLICKED));
+        }
+        private function saveGame(event:MouseEvent):void{
+            dispatchEvent(new EventWithData(GameEvents.OPEN_SAVE_MENU,{coins:content["coinsTxt"].text, diamonds:content["diamondsTxt"].text,diamondsCost:content["diamondCost"].text}));
         }
     }
 }

@@ -15,6 +15,7 @@ package game.view.vl {
         public function AutoUpdateMangerMenuVL() {
 
             super("updateManagerStore");
+            content.visible = true;
 
             initArt();
             initAutoItems();

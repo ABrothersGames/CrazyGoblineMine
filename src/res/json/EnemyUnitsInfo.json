@@ -1,0 +1,50 @@
+[
+    {
+        "unitId": 1000,
+        "unitPrize": 0,
+        "unitMultiplier": 1,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1001,
+        "unitPrize": 0,
+        "unitMultiplier": 2,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1002,
+        "unitPrize": 0,
+        "unitMultiplier": 3,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1003,
+        "unitPrize": 0,
+        "unitMultiplier": 4,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1004,
+        "unitPrize": 0,
+        "unitMultiplier": 5,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1005,
+        "unitPrize": 0,
+        "unitMultiplier": 6,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1006,
+        "unitPrize": 0,
+        "unitMultiplier": 7,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1007,
+        "unitPrize": 0,
+        "unitMultiplier": 8,
+        "unitsCount": 0
+    }
+]

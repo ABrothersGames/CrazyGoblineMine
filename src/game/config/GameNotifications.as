@@ -9,6 +9,8 @@ package game.config {
 
         //game notification
         public static const USER_BALANCE_UPDATED:String = "user_balance_updated";
+        public static const USER_DIAMOND_COST_UPDATED:String = "user_diamond_cost_updated";
+        public static const BALANCE_REFRESH:String = "balance_refresh";
         public static const AUTO_UPDATE_USER_BALANCE:String = "auto_update_user_balance";
         public static const USER_DIAMOND_BALANCE_UPDATED:String = "user_diamond_balance_updated";
 
@@ -32,5 +34,11 @@ package game.config {
         //update manager menu
         public static const OPEN_UPDATE_MANAGER_MENU:String = "open_update_manager_menu";
 
+        public static const CHECK_SLOTS_COMMAND:String = "check_slots_command";
+        public static const CHECK_SLOTS:String = "check_slots";
+        public static const SLOT_ACCEPTED_COMMAND:String = "slot_accepted_command";
+        public static const CANCEL_CLICKED_COMMAND:String = "cancel_clicked_command";
+        public static const SUCCESSFUL_SAVE:String = "successful_save";
+        //public static const OPEN_LOAD_MENU_COMMAND:String = "open_load_menu_command";
     }
 }
