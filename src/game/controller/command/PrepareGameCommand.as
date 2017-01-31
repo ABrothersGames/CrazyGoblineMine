@@ -22,7 +22,12 @@ package game.controller.command {
     import org.puremvc.as3.interfaces.INotification;
     import org.puremvc.as3.patterns.command.SimpleCommand;
 
-    public class PrepareGameCommand extends SimpleCommand {
+import popup.config.PopupNotificationsConfig;
+import popup.controller.command.ClosePopupCommand;
+import popup.controller.command.OpenPopupCommand;
+import popup.model.proxy.PopupsProxy;
+
+public class PrepareGameCommand extends SimpleCommand {
 
         override public function execute(notification:INotification):void {
 
@@ -35,6 +40,7 @@ package game.controller.command {
             facade.registerProxy(new ItemsProxy(new ItemsVO()));
             facade.registerProxy(new UserBalanceProxy(new UserBalanceVO()));
             facade.registerProxy(new DiamondSellerProxy(new DiamondSellerVO()));
+            facade.registerProxy(new PopupsProxy());
         }
 
         private function registerCommands():void {
@@ -45,6 +51,9 @@ package game.controller.command {
             facade.registerCommand(GameNotifications.UPDATE_USER_BALANCE, UpdateUserBalanceCommand);
             facade.registerCommand(GameNotifications.DIAMOND_BOUGHT, DiamondBoughtCommand);
             facade.registerCommand(GameNotifications.OPEN_UPDATE_MANAGER_MENU, OpenAutoUpdateManagerMenu);
+
+            facade.registerCommand(PopupNotificationsConfig.OPEN_POPUP, OpenPopupCommand);
+            facade.registerCommand(PopupNotificationsConfig.CLOSE_POPUP, ClosePopupCommand);
         }
 
         private function registerMediators():void {
