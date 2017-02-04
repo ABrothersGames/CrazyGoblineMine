@@ -16,7 +16,9 @@ asdoc-output
 .project
 .settings
 .apk
-workspace.xml
+/workspace.xml
+/misk.xml
+*-android-descriptor.xml
 /.idea/
 out/
 src/res/fla/
