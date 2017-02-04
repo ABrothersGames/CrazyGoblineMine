@@ -44,7 +44,7 @@
     <option name="name" value="default" />
   </component>
   <component name="IdProvider" IDEtalkID="BA9D0DA3D331258EA8FF3AA5B4D0BF43" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="Apach Flex Air SDK" project-jdk-type="Flex SDK Type (new)">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="flex_4_13_air_15 (1)" project-jdk-type="Flex SDK Type (new)">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
