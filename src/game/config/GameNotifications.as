@@ -39,6 +39,13 @@ package game.config {
         public static const SLOT_ACCEPTED_COMMAND:String = "slot_accepted_command";
         public static const CANCEL_CLICKED_COMMAND:String = "cancel_clicked_command";
         public static const SUCCESSFUL_SAVE:String = "successful_save";
+        public static const SUCCESSFUL_LOAD:String = "successful_load";
         //public static const OPEN_LOAD_MENU_COMMAND:String = "open_load_menu_command";
+
+        //game Timer start
+        public static const START_GAME_TIMER:String = "start_game_timer";
+        public static const TIME_LEFT_COMMAND:String = "time_left_command";
+        public static const STOP_MINING:String = "stop_mining";
+        public static const CONTINUE_MINING:String = "continue_mining";
     }
 }

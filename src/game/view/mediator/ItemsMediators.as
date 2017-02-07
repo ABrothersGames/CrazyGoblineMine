@@ -27,8 +27,9 @@ package game.view.mediator {
         }
 
         private function registerListeners():void {
-
-            itemsVL.addEventListener(GameEvents.ITEM_CLICKED, itemClicked);
+            if(!itemsVL.hasEventListener(GameEvents.ITEM_CLICKED)) {
+                itemsVL.addEventListener(GameEvents.ITEM_CLICKED, itemClicked);
+            };
         }
 
         private function itemClicked(event:EventWithData):void {
@@ -41,7 +42,8 @@ package game.view.mediator {
             return [GameNotifications.ITEM_TO_ENABLE_STATE,
                     GameNotifications.ITEM_TO_DISABLE_STATE,
                     GameNotifications.ITEM_TO_LOCK_STATE,
-                    GameNotifications.ITEM_TO_UNLOCK_STATE
+                    GameNotifications.ITEM_TO_UNLOCK_STATE,
+                    GameNotifications.STOP_MINING
             ]
         }
 
@@ -60,6 +62,12 @@ package game.view.mediator {
                 case GameNotifications.ITEM_TO_UNLOCK_STATE:
                     itemsVL.unlockItem(notification.getBody() as ItemVO);
                     break;
+                case GameNotifications.STOP_MINING:
+                    removeListeners();
+                    break;
+                case GameNotifications.CONTINUE_MINING:
+                    registerListeners();
+                    break;
             }
         }
 
@@ -71,6 +79,9 @@ package game.view.mediator {
         private function get itemsVL():ItemsVL {
 
             return viewComponent as ItemsVL;
+        }
+        private function removeListeners():void{
+            itemsVL.removeEventListener(GameEvents.ITEM_CLICKED, itemClicked);
         }
     }
 }

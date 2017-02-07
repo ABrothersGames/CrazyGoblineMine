@@ -22,6 +22,7 @@ import game.controller.command.common.SimpleGameCommand;
                 }
                 case 'loading':{
                     dataFileProxy.loadGameDataFromFile(slotID,slotName);
+
                     break;
                 }
             }

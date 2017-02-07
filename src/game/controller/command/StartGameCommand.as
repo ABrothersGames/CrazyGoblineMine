@@ -24,6 +24,7 @@ import game.model.proxy.items.ItemsProxy;
         }
         private function refreshUserBalance(data:Object):void{
             sendNotification(GameNotifications.BALANCE_REFRESH, data)
+            sendNotification(GameNotifications.START_GAME_TIMER, 60);
         }
     }
 }

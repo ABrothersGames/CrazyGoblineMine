@@ -4,8 +4,9 @@ package game.view.vl {
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.MouseEvent;
+import flash.text.TextField;
 
-    import game.config.GameEvents;
+import game.config.GameEvents;
 
     import utils.EventWithData;
 
@@ -13,11 +14,10 @@ package game.view.vl {
 
         private var updateManagerMenuBtn:MovieClip;
         private var saveButton:MovieClip;
-
+        private var timer:TextField;
         public function GameMainSceneVL(assetInstanceName:String = null) {
 
             super("mainGameScene");
-
             initArt();
         }
 
@@ -26,7 +26,7 @@ package game.view.vl {
            /* content["coinsTxt"].text = 0;
             content["diamondsTxt"].text = 0;
             content["diamondCost"].text = 0;*/
-
+            timer = content["timer"];
             saveButton = content["saveButton"];
            //saveButton.addEventListener(MouseEvent.CLICK, saveGame);
 
@@ -54,7 +54,9 @@ package game.view.vl {
 
             content["diamondCost"].text = Math.floor(diamondCost).toString();
         }
-
+        public function changeTime(time:String):void{
+            timer.text = time;
+        }
 
         private function updateManagerMenuBtnClicked(event:MouseEvent):void {
 

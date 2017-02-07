@@ -16,5 +16,8 @@ package game.config {
         //update manager menu
         public static const UPDATE_MANAGER_MENU_BTN_CLICKED:String = "update_manager_menu_btn_clicked";
         public static const UPDATE_MANAGER_MENU_CLOSE_BTN_CLICKED:String = "update_manager_menu_close_btn_clicked";
+
+        public static const TIMER_TICK:String = "timer_tick";
+        public static const TIMER_COMPLETE:String = "timer_complete";
     }
 }

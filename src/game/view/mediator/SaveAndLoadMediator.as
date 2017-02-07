@@ -51,6 +51,10 @@ public class SaveAndLoadMediator extends UIMediator{
                     sendNotification(GameNotifications.CANCEL_CLICKED_COMMAND);
                     break;
                 }
+                case GameNotifications.SUCCESSFUL_LOAD:{
+                    sendNotification(GameNotifications.CANCEL_CLICKED_COMMAND);
+                    break;
+                }
             }
         }
         private function checkSlots(slots:Array):void{
