@@ -1,9 +1,12 @@
 package game.view.vl {
     import core.view.components.ViewLogic;
 
-    import flash.display.MovieClip;
+import fl.motion.AdjustColor;
+
+import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.MouseEvent;
+import flash.filters.ColorMatrixFilter;
 import flash.text.TextField;
 
 import game.config.GameEvents;
@@ -22,14 +25,10 @@ import game.config.GameEvents;
         }
 
         private function initArt():void {
-
-           /* content["coinsTxt"].text = 0;
-            content["diamondsTxt"].text = 0;
-            content["diamondCost"].text = 0;*/
-            timer = content["timer"];
             saveButton = content["saveButton"];
-           //saveButton.addEventListener(MouseEvent.CLICK, saveGame);
+            saveButton.alpha = 0.3;
 
+            timer = content["timer"];
             updateManagerMenuBtn = content["autoUpdateStoreButton"];
             //updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
         }
@@ -38,10 +37,11 @@ import game.config.GameEvents;
             content["coinsTxt"].text = data.goldAmount;
             content["diamondsTxt"].text = data.diamondAmount;
             content["diamondCost"].text =  data.diamondCost;
-            saveButton.addEventListener(MouseEvent.CLICK, saveGame);
             updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
         }
-
+        public function saveUnlock():void{
+            saveButton.addEventListener(MouseEvent.CLICK, saveGame);
+        }
         public function updateWinAmount(winAmount:Number):void {
 
             content["coinsTxt"].text = Math.floor(winAmount).toString();

@@ -35,20 +35,28 @@ import org.puremvc.as3.patterns.proxy.Proxy;
         private function checkFileDirectory():void{
             fileDirectory = File.applicationStorageDirectory;
             var allFilesInDir:Array = fileDirectory.getDirectoryListing();
-            if(allFilesInDir.length > 0){
-                objInDirectory = [];
+            if(allFilesInDir.length < 1){
+                fileDirectory = fileDirectory.resolvePath(fileName);
+                createSaveFile();
             }
+
+            objInDirectory = [];
             for(var i:int=0; i<allFilesInDir.length; i++){
                 var urlString:String = allFilesInDir[i].url;
                 var savingName:String = urlString.substring(urlString.lastIndexOf('/') + 1, urlString.length);
                 objInDirectory.push(savingName);
+                fileDirectory.url = urlString;
             }
-            if(objInDirectory && objInDirectory.length > 0) {
-                getDataFromFile();
-            }
+            getDataFromFile()
+        }
+        private function  createSaveFile():void{
+            var stream:FileStream = new FileStream();
+            stream.open(fileDirectory, FileMode.WRITE);
+            stream.writeUTFBytes('');
+            stream.close();
         }
         public function saveGameDataToFile(data:Object,saveSlot:int=0,saveName:String = null):void{
-            fileDirectory = fileDirectory.resolvePath(fileName);
+            //fileDirectory = fileDirectory.resolvePath(fileName);
             if(!dataFromFile){
                 dataFromFile = [];
             }
@@ -156,7 +164,6 @@ import org.puremvc.as3.patterns.proxy.Proxy;
             return dataFromFile as Array;
         }
         private function getDataFromFile():void{
-            fileDirectory = fileDirectory.resolvePath(fileName);
             var stream:FileStream = new FileStream();
             stream.open(fileDirectory, FileMode.READ);
             var dataString:String = stream.readUTFBytes(stream.bytesAvailable);

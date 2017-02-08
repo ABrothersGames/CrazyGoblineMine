@@ -36,7 +36,8 @@ public class GameMainSceneMediator extends UIMediator {
             return [GameNotifications.USER_BALANCE_UPDATED,
                     GameNotifications.USER_DIAMOND_BALANCE_UPDATED,
                     GameNotifications.BALANCE_REFRESH,
-                    GameNotifications.START_GAME_TIMER
+                    GameNotifications.START_GAME_TIMER,
+                    GameNotifications.STOP_MINING
             ];
         }
 
@@ -61,6 +62,10 @@ public class GameMainSceneMediator extends UIMediator {
                 }
                 case GameNotifications.START_GAME_TIMER:{
                     initGameTimer(notification.getBody() as Number);
+                    break;
+                }
+                case GameNotifications.STOP_MINING:{
+                    mainGameSceneVL.saveUnlock();
                     break;
                 }
             }
