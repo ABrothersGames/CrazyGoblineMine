@@ -55,5 +55,8 @@ public class SaveAndLoadVL extends ViewLogic{
                 ( slotArray[i] as MovieClip).removeEventListener(MouseEvent.CLICK, onSlotClickHandler);
             }
         }
+        public function get slotsArray():Array{
+            return slotArray as Array;
+        }
     }
 }

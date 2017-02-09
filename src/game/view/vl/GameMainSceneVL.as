@@ -40,6 +40,7 @@ import game.config.GameEvents;
             updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
         }
         public function saveUnlock():void{
+            saveButton.alpha = 1;
             saveButton.addEventListener(MouseEvent.CLICK, saveGame);
         }
         public function updateWinAmount(winAmount:Number):void {

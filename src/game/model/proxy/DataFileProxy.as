@@ -74,32 +74,28 @@ import org.puremvc.as3.patterns.proxy.Proxy;
 
             //fileDirectory = fileDirectory.resolvePath(fileName);
             var stream:FileStream = new FileStream();
+            stream.addEventListener(Event.COMPLETE, onSaveComplete);
+            stream.addEventListener(Event.CLOSE, onSaveCancel);
+
             stream.open(fileDirectory, FileMode.WRITE);
             stream.writeUTFBytes(concatDataString);
             stream.close();
+            sendNotification(GameNotifications.SUCCESSFUL_SAVE);
 
-            stream.addEventListener(Event.COMPLETE, onSaveComplete);
-            stream.addEventListener(ProgressEvent.PROGRESS, onSaveProgress);
-            stream.addEventListener(Event.CLOSE, onSaveCancel);
-            //fileReference.save(byteArray,'FileName');
-        }
-
-        public function onSaveProgress(event:ProgressEvent):void
-        {
-            trace("Saved " + event.bytesLoaded + " of " + event.bytesTotal + " bytes.");
         }
 
         public function onSaveComplete(event:Event):void
         {
             trace("File saved.");
             (event.target as FileStream).removeEventListener(Event.COMPLETE, onSaveComplete);
-            (event.target as FileStream).removeEventListener(ProgressEvent.PROGRESS, onSaveProgress);
             (event.target as FileStream).removeEventListener(Event.CLOSE, onSaveCancel);
             sendNotification(GameNotifications.SUCCESSFUL_SAVE);
         }
 
         public function onSaveCancel(event:Event):void
         {
+            (event.target as FileStream).removeEventListener(Event.COMPLETE, onSaveComplete);
+            (event.target as FileStream).removeEventListener(Event.CLOSE, onSaveCancel);
             trace("Canceled saving process!");
         }
 
@@ -118,7 +114,8 @@ import org.puremvc.as3.patterns.proxy.Proxy;
                     var param:String = paramsArray[i].toString();
                     loadingSlotObject[param.slice(0, param.indexOf(':'))] = param.substring(param.indexOf(":") + 1, param.indexOf("}"));
                 }
-                sendNotification(GameNotifications.PREPARE_NEW_GAME_PARAMS, loadingSlotObject)
+                sendNotification(GameNotifications.SUCCESSFUL_LOAD);
+                sendNotification(GameNotifications.PREPARE_NEW_GAME_PARAMS, loadingSlotObject);
             }
             //return loadingSlotObject;
             /* stream.addEventListener(Event.COMPLETE, onReadComplete);
@@ -171,9 +168,9 @@ import org.puremvc.as3.patterns.proxy.Proxy;
             stream.close();
         }
         public function get concatDataString():String{
-            var string:String;
+            var string:String = '';
             for(var i:int=1;i<dataFromFile.length;i++){
-                string += dataFromFile[i];
+                string += 'id:' + dataFromFile[i];
             }
             return string;
         }

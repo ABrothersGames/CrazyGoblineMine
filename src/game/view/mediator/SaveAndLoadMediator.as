@@ -35,7 +35,10 @@ public class SaveAndLoadMediator extends UIMediator{
         }
 
         override public function listNotificationInterests():Array {
-            return [GameNotifications.CHECK_SLOTS];
+            return [GameNotifications.CHECK_SLOTS,
+                GameNotifications.SUCCESSFUL_SAVE,
+                GameNotifications.SUCCESSFUL_SAVE
+            ];
         }
 
         override public function handleNotification(notification:INotification):void {
@@ -61,7 +64,7 @@ public class SaveAndLoadMediator extends UIMediator{
             for(var i:int = 1; i<=slotsAmount; i++){
                 if(slots && slots[i]) {
                     var name:String = (slots[i] as String).substring((slots[i] as String).indexOf(':')+1,(slots[i] as String).indexOf('{'));
-                    saveAndLoadVL.checkSlot(i,name)
+                    saveAndLoadVL.checkSlot(i,name);
                     continue;
                 }
                 saveAndLoadVL.checkSlot(i,'Empty');
