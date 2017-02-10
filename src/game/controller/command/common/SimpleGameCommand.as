@@ -1,6 +1,6 @@
 package game.controller.command.common {
-import game.model.proxy.DataFileProxy;
-import game.model.proxy.DiamondSellerProxy;
+	import game.model.proxy.DataFileProxy;
+	import game.model.proxy.DiamondSellerProxy;
     import game.model.proxy.items.ItemsProxy;
     import game.model.proxy.UserBalanceProxy;
     import game.units.model.proxy.DefenderUnitsProxy;
@@ -48,5 +48,9 @@ import game.model.proxy.DiamondSellerProxy;
             return facade.retrieveProxy(DataFileProxy.NAME) as DataFileProxy;
         }
 
+        public function get popupsProxy ():PopupsProxy {
+
+            return facade.retrieveProxy(PopupsProxy.NAME) as PopupsProxy;
+        }
     }
 }

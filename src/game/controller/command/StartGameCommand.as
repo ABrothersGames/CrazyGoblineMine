@@ -22,6 +22,7 @@ import game.model.proxy.items.ItemsProxy;
             facade.registerMediator(new RefreshTimerMediator(new RefreshTimerVL()));
             refreshUserBalance(notification.getBody() as Object);
         }
+        
         private function refreshUserBalance(data:Object):void{
             sendNotification(GameNotifications.BALANCE_REFRESH, data)
         }
