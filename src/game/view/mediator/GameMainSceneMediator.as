@@ -12,7 +12,9 @@ import game.view.vl.GameMainSceneVL;
 
     import org.puremvc.as3.interfaces.INotification;
 
-    public class GameMainSceneMediator extends UIMediator {
+import utils.EventWithData;
+
+public class GameMainSceneMediator extends UIMediator {
 
         public static const NAME:String = "GameMainSceneMediator";
         public function GameMainSceneMediator(viewComponent:GameMainSceneVL = null) {
@@ -24,12 +26,14 @@ import game.view.vl.GameMainSceneVL;
             super.onRegister();
             mainGameSceneVL.updateDiamondCost(diamondSellerProxy.diamondSellerVO.diamondCost);
             registerListener();
+
         }
 
 
         override public function listNotificationInterests():Array {
             return [GameNotifications.USER_BALANCE_UPDATED,
-                    GameNotifications.USER_DIAMOND_BALANCE_UPDATED
+                    GameNotifications.USER_DIAMOND_BALANCE_UPDATED,
+                    GameNotifications.BALANCE_REFRESH
             ];
         }
 
@@ -44,16 +48,21 @@ import game.view.vl.GameMainSceneVL;
                     mainGameSceneVL.updateDiamondAmount(notification.getBody() as Number);
                     break;
                 }
-                /*case GameNotifications.USER_DIAMOND_COST_UPDATED:{
+                case GameNotifications.USER_DIAMOND_COST_UPDATED:{
                     mainGameSceneVL.updateDiamondCost(diamondSellerProxy.diamondSellerVO.diamondCost);
                     break;
-                }*/
+                }
+                case GameNotifications.BALANCE_REFRESH:{
+                    mainGameSceneVL.setUserBalance(notification.getBody() as Object);
+                    break;
+                }
             }
         }
 
         private function registerListener():void {
 
             mainGameSceneVL.addEventListener(GameEvents.UPDATE_MANAGER_MENU_BTN_CLICKED, updateManagerMenuBtnClicked);
+            mainGameSceneVL.addEventListener(GameEvents.OPEN_SAVE_MENU, saveGameButtonClicked);
         }
 
         private function get mainGameSceneVL():GameMainSceneVL {
@@ -68,6 +77,16 @@ import game.view.vl.GameMainSceneVL;
         private function updateManagerMenuBtnClicked(event:Event):void {
 
             sendNotification(GameNotifications.OPEN_UPDATE_MANAGER_MENU);
+        }
+
+        private function saveGameButtonClicked(event:EventWithData):void {
+            var data:* = event.data;
+            sendNotification(GameNotifications.CHECK_SLOTS_COMMAND, data, 'saving');
+        }
+        override public function onRemove():void{
+            mainGameSceneVL.removeEventListener(GameEvents.UPDATE_MANAGER_MENU_BTN_CLICKED, updateManagerMenuBtnClicked);
+            mainGameSceneVL.removeEventListener(GameEvents.OPEN_SAVE_MENU, saveGameButtonClicked);
+            super.onRemove();
         }
     }
 }

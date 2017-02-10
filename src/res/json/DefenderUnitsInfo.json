@@ -1,0 +1,26 @@
+[
+    {
+        "unitId": 0,
+        "unitPrize": 10,
+        "unitMultiplier": 1,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 1,
+        "unitPrize": 50,
+        "unitMultiplier": 2,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 2,
+        "unitPrize": 100,
+        "unitMultiplier": 3,
+        "unitsCount": 0
+    },
+    {
+        "unitId": 3,
+        "unitPrize": 200,
+        "unitMultiplier": 4,
+        "unitsCount": 0
+    }
+]

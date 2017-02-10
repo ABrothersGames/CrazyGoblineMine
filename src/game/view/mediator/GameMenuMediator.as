@@ -23,13 +23,17 @@ package game.view.mediator {
         }
 
         private function registerListeners():void {
-
+            (viewComponent as GameMenuVL).addEventListener(GameEvents.OPEN_LOAD_MENU, openLoadMenuHandler);
             (viewComponent as GameMenuVL).addEventListener(GameEvents.START_NEW_GAME, startGameEventHandler);
         }
 
         private function startGameEventHandler(event:Event):void {
 
             sendNotification(GameNotifications.PREPARE_NEW_GAME_PARAMS);
+        }
+
+        private function openLoadMenuHandler(event:Event):void {
+            sendNotification(GameNotifications.CHECK_SLOTS_COMMAND,null,'loading');
         }
     }
 }
