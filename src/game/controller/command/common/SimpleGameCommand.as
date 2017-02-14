@@ -8,10 +8,9 @@ package game.controller.command.common {
     import game.units.model.proxy.UnitsProxy;
 
     import org.puremvc.as3.patterns.command.SimpleCommand;
+    import popup.model.proxy.PopupsProxy;
 
-    import popup.model.proxy.PopupProxy;
-
-    public class SimpleGameCommand extends SimpleCommand {
+public class SimpleGameCommand extends SimpleCommand {
 
         public function get itemsProxy():ItemsProxy {
 
@@ -28,9 +27,9 @@ package game.controller.command.common {
             return facade.retrieveProxy(DiamondSellerProxy.NAME) as DiamondSellerProxy;
         }
 
-        public function get popupProxy():PopupProxy {
+        public function get popupProxy():PopupsProxy {
 
-            return facade.retrieveProxy(PopupProxy.NAME) as PopupProxy;
+            return facade.retrieveProxy(PopupsProxy.NAME) as PopupsProxy;
         }
 
         public function get defenderUnitsProxy():DefenderUnitsProxy {

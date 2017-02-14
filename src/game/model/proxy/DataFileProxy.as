@@ -49,7 +49,7 @@ package game.model.proxy {
 
       public function saveGameDataToFile(data:Object,saveSlot:int=0,saveName:String = null):void{
 
-         var fileDirectory = fileDirectory.resolvePath(fileName);
+         fileDirectory = fileDirectory.resolvePath(fileName);
 
          if(!dataFromFile){
             dataFromFile = [];
