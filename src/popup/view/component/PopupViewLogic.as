@@ -2,8 +2,10 @@ package popup.view.component {
     import core.view.components.ViewLogic;
 
     import flash.display.DisplayObject;
+
     import flash.display.MovieClip;
     import flash.display.SimpleButton;
+
     import flash.events.Event;
     import flash.events.MouseEvent;
     import flash.text.TextField;

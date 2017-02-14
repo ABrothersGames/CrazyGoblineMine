@@ -6,21 +6,21 @@ import flash.display.DisplayObject;
 
 import org.puremvc.as3.patterns.proxy.Proxy;
 
-    public class PopupProxy extends Proxy {
+    public class PopupsProxy extends Proxy {
 
-        public static const NAME:String = "PopupProxy";
 
-        private var popupsQueue:Vector.<String>;
+        private var popupsQueue:Vector.<PopupDto> = new <PopupDto>[];
         private var _isFreeForOpen:Boolean = true;
-        private var _currentOpenPopup:String;
+        private var _currentOpenPopup:PopupDto;
 
-        public function PopupProxy() {
-            super(NAME, null);
+        public static const NAME:String = "PopupsProxy";
+
+        public function PopupsProxy(data:Object = null) {
+            super(NAME, data);
         }
 
-        public function getNextPopupForOpen():String {
-
-            if(hasNextPopupForOpen){
+        public function getNextPopupForOpen():PopupDto {
+            if(hasNextPopupForOpen && _isFreeForOpen){
                 _currentOpenPopup = popupsQueue.shift();
                 return _currentOpenPopup;
             }
@@ -28,8 +28,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
             return null;
         }
 
-        public function addPopupToQueue(popup:String):void {
-
+        public function addPopupToQueue(popup:PopupDto):void {
             popupsQueue.push(popup);
         }
 
@@ -45,9 +44,7 @@ import org.puremvc.as3.patterns.proxy.Proxy;
         public function get isFreeForOpen():Boolean {
             return _isFreeForOpen;
         }
-
-        public function get currentOpenPopup():String {
-
+        public function get currentOpenPopup():PopupDto {
             return _currentOpenPopup;
         }
     }

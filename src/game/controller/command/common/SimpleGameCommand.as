@@ -1,6 +1,6 @@
 package game.controller.command.common {
-import game.model.proxy.DataFileProxy;
-import game.model.proxy.DiamondSellerProxy;
+	import game.model.proxy.DataFileProxy;
+	import game.model.proxy.DiamondSellerProxy;
     import game.model.proxy.items.ItemsProxy;
     import game.model.proxy.UserBalanceProxy;
     import game.units.model.proxy.DefenderUnitsProxy;
@@ -8,10 +8,9 @@ import game.model.proxy.DiamondSellerProxy;
     import game.units.model.proxy.UnitsProxy;
 
     import org.puremvc.as3.patterns.command.SimpleCommand;
+    import popup.model.proxy.PopupsProxy;
 
-    import popup.model.proxy.PopupProxy;
-
-    public class SimpleGameCommand extends SimpleCommand {
+public class SimpleGameCommand extends SimpleCommand {
 
         public function get itemsProxy():ItemsProxy {
 
@@ -28,9 +27,9 @@ import game.model.proxy.DiamondSellerProxy;
             return facade.retrieveProxy(DiamondSellerProxy.NAME) as DiamondSellerProxy;
         }
 
-        public function get popupProxy():PopupProxy {
+        public function get popupProxy():PopupsProxy {
 
-            return facade.retrieveProxy(PopupProxy.NAME) as PopupProxy;
+            return facade.retrieveProxy(PopupsProxy.NAME) as PopupsProxy;
         }
 
         public function get defenderUnitsProxy():DefenderUnitsProxy {
@@ -48,5 +47,9 @@ import game.model.proxy.DiamondSellerProxy;
             return facade.retrieveProxy(DataFileProxy.NAME) as DataFileProxy;
         }
 
+        public function get popupsProxy ():PopupsProxy {
+
+            return facade.retrieveProxy(PopupsProxy.NAME) as PopupsProxy;
+        }
     }
 }

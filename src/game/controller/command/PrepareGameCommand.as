@@ -3,8 +3,8 @@ package game.controller.command {
 
     import game.config.GameNotifications;
     import game.controller.command.autoUpdate.OpenAutoUpdateManagerMenu;
-import game.model.proxy.DataFileProxy;
-import game.model.proxy.DiamondSellerProxy;
+	import game.model.proxy.DataFileProxy;
+	import game.model.proxy.DiamondSellerProxy;
     import game.model.proxy.items.ItemsProxy;
     import game.model.proxy.UserBalanceProxy;
     import game.model.vo.DiamondSellerVO;
@@ -12,18 +12,22 @@ import game.model.proxy.DiamondSellerProxy;
     import game.model.vo.UserBalanceVO;
     import game.view.mediator.DiamondSellerMediator;
     import game.view.mediator.GameMainSceneMediator;
-
     import game.view.mediator.GameMenuMediator;
     import game.view.mediator.ItemsMediators;
-import game.view.mediator.SaveAndLoadMediator;
-import game.view.vl.DiamondSellerVL;
+	import game.view.mediator.SaveAndLoadMediator;
+	import game.view.vl.DiamondSellerVL;
     import game.view.vl.GameMainSceneVL;
     import game.view.vl.GameMenuVL;
     import game.view.vl.ItemsVL;
-import game.view.vl.SaveAndLoadVL;
-
-import org.puremvc.as3.interfaces.INotification;
+	import game.view.vl.SaveAndLoadVL;
+	
+	import org.puremvc.as3.interfaces.INotification;
     import org.puremvc.as3.patterns.command.SimpleCommand;
+	
+	import popup.config.PopupNotificationsConfig;
+	import popup.controller.command.ClosePopupCommand;
+	import popup.controller.command.OpenPopupCommand;
+	import popup.model.proxy.PopupsProxy;
 
     public class PrepareGameCommand extends SimpleCommand {
 
@@ -53,6 +57,9 @@ import org.puremvc.as3.interfaces.INotification;
             facade.registerCommand(GameNotifications.SLOT_ACCEPTED_COMMAND, SlotAcceptedCommand);
             facade.registerCommand(GameNotifications.CANCEL_CLICKED_COMMAND, CancelClickedCommand);
             facade.registerCommand(GameNotifications.TIME_LEFT_COMMAND, TimeLeftCommand);
+            facade.registerCommand(PopupNotificationsConfig.OPEN_POPUP, OpenPopupCommand);
+            facade.registerCommand(PopupNotificationsConfig.CLOSE_POPUP, ClosePopupCommand);
+
         }
 
         private function registerMediators():void {
