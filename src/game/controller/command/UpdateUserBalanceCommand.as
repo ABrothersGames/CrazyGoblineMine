@@ -11,6 +11,7 @@ package game.controller.command {
             var balance:Number = notification.getBody() as Number;
 
             userBalanceProxy.userBalance += balance;
+            userBalanceProxy.userSessionBalance += balance;
 
             itemsProxy.tryUpdateItemsParametersByBalance(userBalanceProxy.userBalance);
             diamondSellerProxy.updateDiamondSellerState(userBalanceProxy.userBalance);

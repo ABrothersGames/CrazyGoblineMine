@@ -27,11 +27,6 @@ public class SimpleGameCommand extends SimpleCommand {
             return facade.retrieveProxy(DiamondSellerProxy.NAME) as DiamondSellerProxy;
         }
 
-        public function get popupProxy():PopupsProxy {
-
-            return facade.retrieveProxy(PopupsProxy.NAME) as PopupsProxy;
-        }
-
         public function get defenderUnitsProxy():DefenderUnitsProxy {
 
             return facade.retrieveProxy(DefenderUnitsProxy.NAME) as DefenderUnitsProxy;

@@ -41,6 +41,7 @@ package game.controller.command {
             var data:Array = JSON.parse(event.target.data) as Array;
 
             itemsProxy.parseItemsConfiguration(data);
+            userBalanceProxy.refreshSessionBalance();
 
             sendNotification(GameNotifications.START_GAME, /*itemsProxy*/{goldAmount:userBalanceProxy.userBalance,diamondAmount:userBalanceProxy.userDiamondBalance,diamondCost: diamondSellerProxy.diamondCost});
 

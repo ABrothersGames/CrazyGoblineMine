@@ -11,7 +11,7 @@ package popup.controller.command {
 
         override public function execute(notification:INotification):void {
             var popupDto:PopupDto = notification.getBody() as PopupDto;
-            facade.registerMediator(new popupDto.popupMediator(new popupDto.popupViewLogic(popupDto.id) as PopupViewLogic) as PopupMediator);
+            facade.registerMediator(new popupDto.popupMediator(new popupDto.popupViewLogic(popupDto.id)));
         }
     }
 }

@@ -21,7 +21,7 @@ package game.controller.command {
             switch (clickedItemType){
                 case GameItemClickedTypes.UNLOCK_CLICKED_TYPE:
                     itemVO.unlock = true;
-                    itemPrize = -itemPrize;
+                    itemPrize = - itemsProxy.getItemVO(itemID).unlockCoins;
                     break;
                 case GameItemClickedTypes.ENABLE_CLICKED_TYPE:
                     itemVO.refreshFinished = false;
