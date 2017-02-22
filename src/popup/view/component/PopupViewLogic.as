@@ -1,14 +1,11 @@
 package popup.view.component {
     import core.view.components.ViewLogic;
 
-<<<<<<< Updated upstream
     import flash.display.DisplayObject;
+
     import flash.display.MovieClip;
     import flash.display.SimpleButton;
-=======
-import flash.display.MovieClip;
-import flash.display.SimpleButton;
->>>>>>> Stashed changes
+
     import flash.events.Event;
     import flash.events.MouseEvent;
     import flash.text.TextField;

@@ -1,11 +1,15 @@
 package game.view.vl {
     import core.view.components.ViewLogic;
 
-    import flash.display.MovieClip;
+import fl.motion.AdjustColor;
+
+import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.MouseEvent;
+import flash.filters.ColorMatrixFilter;
+import flash.text.TextField;
 
-    import game.config.GameEvents;
+import game.config.GameEvents;
 
     import utils.EventWithData;
 
@@ -13,23 +17,18 @@ package game.view.vl {
 
         private var updateManagerMenuBtn:MovieClip;
         private var saveButton:MovieClip;
-
+        private var timer:TextField;
         public function GameMainSceneVL(assetInstanceName:String = null) {
 
             super("mainGameScene");
-
             initArt();
         }
 
         private function initArt():void {
-
-           /* content["coinsTxt"].text = 0;
-            content["diamondsTxt"].text = 0;
-            content["diamondCost"].text = 0;*/
-
             saveButton = content["saveButton"];
-           //saveButton.addEventListener(MouseEvent.CLICK, saveGame);
+            saveButton.alpha = 0.3;
 
+            timer = content["timer"];
             updateManagerMenuBtn = content["autoUpdateStoreButton"];
             //updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
         }
@@ -38,10 +37,12 @@ package game.view.vl {
             content["coinsTxt"].text = data.goldAmount;
             content["diamondsTxt"].text = data.diamondAmount;
             content["diamondCost"].text =  data.diamondCost;
-            saveButton.addEventListener(MouseEvent.CLICK, saveGame);
             updateManagerMenuBtn.addEventListener(MouseEvent.CLICK, updateManagerMenuBtnClicked);
         }
-
+        public function saveUnlock():void{
+            saveButton.alpha = 1;
+            saveButton.addEventListener(MouseEvent.CLICK, saveGame);
+        }
         public function updateWinAmount(winAmount:Number):void {
 
             content["coinsTxt"].text = Math.floor(winAmount).toString();
@@ -54,7 +55,9 @@ package game.view.vl {
 
             content["diamondCost"].text = Math.floor(diamondCost).toString();
         }
-
+        public function changeTime(time:String):void{
+            timer.text = time;
+        }
 
         private function updateManagerMenuBtnClicked(event:MouseEvent):void {
 

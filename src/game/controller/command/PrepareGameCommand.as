@@ -56,9 +56,10 @@ package game.controller.command {
             facade.registerCommand(GameNotifications.CHECK_SLOTS_COMMAND, CheckSlotsCommand);
             facade.registerCommand(GameNotifications.SLOT_ACCEPTED_COMMAND, SlotAcceptedCommand);
             facade.registerCommand(GameNotifications.CANCEL_CLICKED_COMMAND, CancelClickedCommand);
-
+            facade.registerCommand(GameNotifications.TIME_LEFT_COMMAND, TimeLeftCommand);
             facade.registerCommand(PopupNotificationsConfig.OPEN_POPUP, OpenPopupCommand);
             facade.registerCommand(PopupNotificationsConfig.CLOSE_POPUP, ClosePopupCommand);
+
         }
 
         private function registerMediators():void {
