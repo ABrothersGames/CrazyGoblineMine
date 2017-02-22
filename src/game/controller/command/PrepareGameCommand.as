@@ -43,6 +43,7 @@ package game.controller.command {
             facade.registerProxy(new UserBalanceProxy(new UserBalanceVO()));
             facade.registerProxy(new DiamondSellerProxy(new DiamondSellerVO()));
             facade.registerProxy(new DataFileProxy());
+            facade.registerProxy(new PopupsProxy());
         }
 
         private function registerCommands():void {

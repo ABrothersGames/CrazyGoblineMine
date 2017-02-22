@@ -16,17 +16,19 @@ import popup.config.PopupNotificationsConfig;
 
     public class PopupMediator extends UIMediator {
 
-    public static const NAME:String = "";
+    public static var name:String = "";
     public function PopupMediator(viewComponent:ViewLogic, eclipseBackground:Boolean = true) {
-            super(NAME, viewComponent);
+            name = (viewComponent as PopupViewLogic).popupContent.name + "Mediator";
+            super(name, viewComponent);
         }
 
         override public function onRegister():void {
             super.onRegister();
-
+            registerListeners();
         }
 
         override public function onRemove():void {
+            removeListeners();
             super.onRemove();
         }
 
@@ -40,18 +42,22 @@ import popup.config.PopupNotificationsConfig;
             }
         }
 
-        private function registerListeners():void {
+        protected function registerListeners():void {
 
             popupVL.addEventListener(PopupEventsConfig.CLOSE_BTN_CLICKED, closeBtnClicked);
         }
 
-        private function closeBtnClicked(event:Event):void {
-            sendNotification(PopupNotificationsConfig.CLOSE_POPUP, getViewComponent().name);
+        protected function closeBtnClicked(event:Event):void {
+
+            sendNotification(PopupNotificationsConfig.CLOSE_POPUP, name);
         }
 
         private function get popupVL():PopupViewLogic {
 
             return viewComponent as PopupViewLogic;
+        }
+        protected function removeListeners():void{
+            popupVL.removeEventListener(PopupEventsConfig.CLOSE_BTN_CLICKED, closeBtnClicked);
         }
     }
 }

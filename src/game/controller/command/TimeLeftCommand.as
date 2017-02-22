@@ -7,11 +7,31 @@ import game.controller.command.common.SimpleGameCommand;
 
 import org.puremvc.as3.interfaces.INotification;
 
-    public class TimeLeftCommand extends SimpleGameCommand{
+import popup.config.PopupNotificationsConfig;
+
+import popup.model.proxy.PopupDto;
+
+import popup.view.component.MiningCompletePopupVL;
+
+import popup.view.component.PopupViewLogic;
+import popup.view.mediator.MiningCompletePopupMediator;
+
+import popup.view.mediator.PopupMediator;
+
+public class TimeLeftCommand extends SimpleGameCommand{
 
         override public function execute(notification:INotification):void {
             sendNotification(GameNotifications.STOP_MINING);
-            //facade.registerMediator(new MiningResultPopupMediator(new MinigResultPopupVL));
+
+            var popupDto:PopupDto= new PopupDto();
+            popupDto.id = "miningFinishPopup";
+            popupDto.popupMediator = MiningCompletePopupMediator;
+            popupDto.popupViewLogic = MiningCompletePopupVL;
+            //popupsProxy.addPopupToQueue(popupDto);
+
+            facade.registerMediator(new MiningCompletePopupMediator(new MiningCompletePopupVL('miningFinishPopup')));
+
+            sendNotification(PopupNotificationsConfig.ADD_USER_INFO_TO_POPUP, userBalanceProxy.userBalanceVO)
         }
     }
 }

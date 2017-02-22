@@ -2,8 +2,9 @@ package popup.view.component {
     import core.view.components.ViewLogic;
 
     import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
 
-    import flash.display.MovieClip;
+import flash.display.MovieClip;
     import flash.display.SimpleButton;
 
     import flash.events.Event;
@@ -13,7 +14,7 @@ package popup.view.component {
     import popup.config.PopupEventsConfig;
 
     public class PopupViewLogic extends ViewLogic {
-
+        public var popupContent:DisplayObjectContainer;
         //text
         protected var titleTxt:TextField;
         protected var bodyTxt:TextField;
@@ -21,12 +22,14 @@ package popup.view.component {
         //display object(movie clip, image and other object)
         protected var title:DisplayObject;
         protected var body:DisplayObject;
-
+        protected var bodyUserInfo:DisplayObjectContainer;
         //btns
         protected var buttons:Array = [];
+        protected var infoFields:Array = [];
         public function PopupViewLogic(assetInstanceName:String) {
-            super(assetInstanceName);
-            content.visible = true;
+            super('popupsContainer');
+            popupContent = content[assetInstanceName];
+            popupContent.visible = true;
             initArt();
             registerButtons();
         }
@@ -40,6 +43,7 @@ package popup.view.component {
 
             initTitle();
             initBody();
+            //initUserInfoFields();
         }
 
         protected function initBtns():void {
@@ -48,38 +52,49 @@ package popup.view.component {
 
         protected function initTitleText():void {
 
-            if(content.getChildByName("titleTxt") != null){
-                titleTxt = content.getChildByName("titleTxt") as TextField;
+            if(popupContent.getChildByName("titleTxt") != null){
+                titleTxt = popupContent.getChildByName("titleTxt") as TextField;
             }
         }
 
         protected function initBodyText():void {
 
-            if(content.getChildByName("bodyTxt") != null){
-                bodyTxt = content.getChildByName("bodyTxt") as TextField;
+            if(popupContent.getChildByName("bodyTxt") != null){
+                bodyTxt = popupContent.getChildByName("bodyTxt") as TextField;
             }
         }
 
         protected function initTitle():void {
 
-            if(content.getChildByName("title") != null){
-                title = content.getChildByName("title") as DisplayObject;
+            if(popupContent.getChildByName("title") != null){
+                title = popupContent.getChildByName("title") as DisplayObject;
             }
         }
 
         protected function initBody():void {
 
-            if(content.getChildByName("body") != null){
-                body = content.getChildByName("body") as DisplayObject;
+            if(popupContent.getChildByName("body") != null){
+                body = popupContent.getChildByName("body") as DisplayObject;
             }
         }
+        /*protected function initUserInfoFields():void{
+
+            if(popupContent.getChildByName("bodyUserInfo") != null){
+               bodyUserInfo = popupContent.getChildByName("bodyUserInfo") as DisplayObjectContainer;
+            }
+            if(bodyUserInfo.numChildren>0){
+                for(var i:int=0; i<bodyUserInfo.numChildren; i++){
+                    infoFields.push(bodyUserInfo.getChildAt(i));
+                }
+            }
+        }*/
 
         protected function registerButtons():void {
 
             var button:MovieClip;
 
-            if(content.getChildByName("closeBtn") != null){
-                button = content.getChildByName("closeBtn") as MovieClip;
+            if(popupContent.getChildByName("closeBtn") != null){
+                button = popupContent.getChildByName("closeBtn") as MovieClip;
                 button.addEventListener(MouseEvent.CLICK, closeBtnClicked);
             }
         }
@@ -88,5 +103,5 @@ package popup.view.component {
             event.currentTarget.removeEventListener(MouseEvent.CLICK, closeBtnClicked);
             dispatchEvent(new Event(PopupEventsConfig.CLOSE_BTN_CLICKED));
         }
-}
+    }
 }
