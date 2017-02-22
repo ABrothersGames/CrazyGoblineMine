@@ -7,7 +7,7 @@ bin/*
 asdoc-output
 /*.as3proj
 **/target
-.iml
+*.iml
 *-app.xml
 
 .metadata
@@ -16,8 +16,8 @@ asdoc-output
 .project
 .settings
 .apk
-/workspace.xml
-/misk.xml
+.idea/workspace.xml
+.idea/misc.xml
 *-android-descriptor.xml
 /.idea/
 out/
