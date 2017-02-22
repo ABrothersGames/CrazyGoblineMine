@@ -16,8 +16,8 @@ asdoc-output
 .project
 .settings
 .apk
-.idea/workspace.xml
-.idea/misc.xml
+idea/*
+idea/*
 *-android-descriptor.xml
 /.idea/
 out/
